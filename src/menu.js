@@ -14,7 +14,7 @@ export class ContextMenu extends Menu {
         const duplicate = this.modules.find(m => m.type === moduleItem.type);
         if (duplicate) return;
         this.modules.push(moduleItem);
-        this.$el.innerHTML = this.modules.map(m => m.toHTML().join(''));
+        this.$el.innerHTML = this.modules.map(m => m.toHTML()).join('');
     }
 
     open(x, y) {
