@@ -40,3 +40,16 @@ body {
 .menu .menu-item:hover {
     background: #343434;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 90%;
+    margin: 20px auto;
+    border: 1px dashed #aaa;
+    line-height: 150px;
+    font-size: 14px;
+    color: #666;
+}

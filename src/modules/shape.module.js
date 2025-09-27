@@ -89,10 +89,7 @@ export class ShapeModule extends Module {
         parallelogram.style.background = getRandomColor()
         return parallelogram
         }
-        
-        if(document.querySelector('[data-shape]')){
-            document.querySelector('[data-shape]').remove()
-        }
+
         switch (getRandom(1, 5)){
         case 1:
             document.body.append(createCircle(getRandom(10, 500)))
