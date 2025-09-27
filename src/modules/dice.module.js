@@ -1,6 +1,5 @@
 import {Module} from '../core/module'
 import { getRandom } from '../utils'
-import * as dice from '../services/dice.functions'
 
 export class DiceModule extends Module {
     constructor(){
@@ -8,8 +7,10 @@ export class DiceModule extends Module {
     }
 
     trigger(){
+        this.playDiceSound();
         const diceContainer = document.createElement("div")
-        document.body.append(diceContainer)
+        const container = document.querySelector('.container');
+        container.append(diceContainer)
         diceContainer.className = "diceContainer"
 
         const dice = document.createElement('div')
@@ -19,42 +20,84 @@ export class DiceModule extends Module {
 
         switch(getRandom(1, 6)){
             case 1:
-                dice.createOnePoint();
+                this.createOnePoint();
                 setTimeout(() => {
                     diceContainer.remove()
                 }, 5000);
                 break;
             case 2:
-                dice.createTwoPoint();
+                this.createTwoPoint();
                 setTimeout(() => {
                     diceContainer.remove()
                 }, 5000);
                 break;
             case 3:
-                dice.createThreePoint();
+                this.createThreePoint();
                 setTimeout(() => {
                     diceContainer.remove()
                 }, 5000);
                 break;
             case 4:
-                dice.createFourPoint();
+                this.createFourPoint();
                 setTimeout(() => {
                     diceContainer.remove()
                 }, 5000);
                 break;
             case 5:
-                dice.createFivePoint();
+                this.createFivePoint();
                 setTimeout(() => {
                     diceContainer.remove()
                 }, 5000);
                 break;
             case 6:
-                dice.createSixPoint();
+                this.createSixPoint();
                 setTimeout(() => {
                     diceContainer.remove()
                 }, 5000);
                 break;
         }
+
+    }
+    playDiceSound() {
+        const audio = new Audio('public/diceSound.mp3')
+        audio.play().catch(error => {
+            console.log('Ошибка воспроизведения:', error);
+        });
+    }
+
+    createOnePoint(){
+        this.createPoint("center")
+    }
+
+    createPoint(position){
+        const point = document.createElement('div')
+        point.classList.add("point", position)
+        const dice = document.querySelector(".dice");
+        dice.append(point)
+    }
+
+    createTwoPoint(){
+        this.createPoint("top-left")
+        this.createPoint("bottom-right")
+    }
+
+    createThreePoint(){
+        const positions = ["center", "top-left", "bottom-right"]
+        positions.forEach(pos => this.createPoint(pos))
+    }
+
+    createFourPoint(){
+        const positions = ["top-right", "top-left", "bottom-right", "bottom-left"]
+        positions.forEach(pos => this.createPoint(pos))
+    }
+
+    createFivePoint() {
+        const positions = ["center", "top-left", "bottom-right", "top-right", "bottom-left"]
+        positions.forEach(pos => this.createPoint(pos))
+    }
+
+    createSixPoint(){
+        const positions = ["top-left", "bottom-right" , "top-right", "bottom-left", "middle-right", "middle-left"]
+        positions.forEach(pos => this.createPoint(pos))
     }
 }
-
