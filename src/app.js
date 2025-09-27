@@ -1,8 +1,10 @@
 import './styles.css'
+import './dice.styles.css'
 import { ContextMenu } from "./menu";
 import { ShapeModule } from "./modules/shape.module";
 import { AddTextModule } from "./modules/addText.module";
 import {SettingsModule} from "./modules/settings.module";
+
 
 const createContainer = () => {
     const container = document.createElement("div");
