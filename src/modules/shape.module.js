@@ -96,18 +96,33 @@ export class ShapeModule extends Module {
         switch (getRandom(1, 5)){
         case 1:
             document.body.append(createCircle(getRandom(10, 500)))
+            setTimeout(() => {
+                document.querySelector('[data-shape]').remove()
+            }, 5000)
             break;
         case 2:
             document.body.append(createSquare(getRandom(10, 500)))
+            setTimeout(() => {
+                document.querySelector('[data-shape]').remove()
+            }, 5000)
             break;
         case 3:
             document.body.append(createTriangle(getRandom(10,200)))
+            setTimeout(() => {
+                document.querySelector('[data-shape]').remove()
+            }, 5000)
             break;
         case 4:
             document.body.append(createTrapeze(getRandom(10,200)))
+            setTimeout(() => {
+                document.querySelector('[data-shape]').remove()
+            }, 5000)
             break;
         case 5:
             document.body.append(createParallelogram(getRandom(10,200)))
+            setTimeout(() => {
+                document.querySelector('[data-shape]').remove()
+            }, 5000)
             break;
 
             
