@@ -2,6 +2,7 @@ import './styles.css'
 import { ContextMenu } from "./menu";
 import { ShapeModule } from "./modules/shape.module";
 import { AddTextModule } from "./modules/addText.module";
+import {SettingsModule} from "./modules/settings.module";
 
 const createContainer = () => {
     const container = document.createElement("div");
@@ -15,8 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const menu = new ContextMenu('#menu');
     const randomShape = new ShapeModule();
     const text = new AddTextModule();
+    const settings = new SettingsModule();
     menu.add(randomShape);
-    menu.add(text)
+    menu.add(text);
+    menu.add(settings);
 
     document.addEventListener('contextmenu', (event) => {
         event.preventDefault();
