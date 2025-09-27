@@ -8,6 +8,7 @@ export class ContextMenu extends Menu {
 
         this.itemClicked = this.itemClicked.bind(this);
         this.$el.addEventListener('click', this.itemClicked);
+        this.pos = {x: 0, y: 0};
     }
 
     add(moduleItem) {
@@ -21,6 +22,8 @@ export class ContextMenu extends Menu {
         this.$el.style.display = 'block';
         this.$el.style.left = `${x}px`;
         this.$el.style.top = `${y}px`;
+        this.pos.x = x;
+        this.pos.y = y;
     }
 
     close() {
@@ -35,7 +38,10 @@ export class ContextMenu extends Menu {
         const mod = this.modules.find(m => m.type === type);
 
         if (mod) {
-            mod.trigger();
+            if (mod.type === 'test') {
+                mod.trigger(this.pos.x, this.pos.y);
+            }
+            else mod.trigger();
         }
         this.close();
     }
