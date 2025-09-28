@@ -1,5 +1,6 @@
 import {Module} from '../core/module'
 import { getRandom } from '../utils'
+import diceSoundUrl from '@/assets/diceSound.mp3';
 
 export class DiceModule extends Module {
     constructor(){
@@ -59,10 +60,9 @@ export class DiceModule extends Module {
 
     }
     playDiceSound() {
-        const audio = new Audio('public/diceSound.mp3')
-        audio.play().catch(error => {
-            console.log('Ошибка воспроизведения:', error);
-        });
+        if (!this.diceAudio) this.diceAudio = new Audio(diceSoundUrl);
+        this.diceAudio.currentTime = 0;
+        this.diceAudio.play();
     }
 
     createOnePoint(){

@@ -25,7 +25,8 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: filename('js'),
-      clean: true
+      clean: true,
+      publicPath: isProd ? '/contextMenu-hackathon/' : '/',
     },
     resolve: {
       extensions: ['.js'],
@@ -62,6 +63,11 @@ module.exports = (env, argv) => {
               presets: ['@babel/preset-env']
             }
           }
+        },
+        {
+          test: /\.(mp3|wav|ogg)$/i,
+          type: 'asset/resource',
+          generator: { filename: 'assets/[name][hash][ext]' }
         }
       ],
     }
