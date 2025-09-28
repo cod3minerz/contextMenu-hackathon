@@ -47,16 +47,19 @@ export class SettingsModule extends Module {
 
         const buttonCursor = document.createElement("button");
         buttonCursor.className = "cursor"
+        buttonCursor.type = "button";
         buttonCursor.textContent = 'Вернуть стандартный курсор';
         form.append(buttonCursor);
 
         const buttonBackground = document.createElement("button");
         buttonBackground.className = "background-btn"
+        buttonBackground.type = "button";
         buttonBackground.textContent = 'Вернуть фон по умолчанию';
         form.append(buttonBackground);
 
         const button = document.createElement("button");
         button.className = "ok"
+        button.type = "submit";
         button.textContent = 'OK';
         form.append(button);
 
@@ -67,29 +70,44 @@ export class SettingsModule extends Module {
 
         const dialog = this.createModal();
         dialog.addEventListener('click', (event) => {
-            if (event.target === dialog) dialog.close();
+            if (event.target === dialog) {
+                dialog.close();
+                dialog.remove();
+            }
         })
         document.body.append(dialog);
         dialog.showModal();
 
         const buttonCursor = document.querySelector(`.cursor`);
         if (buttonCursor) {
-            buttonCursor.addEventListener('click', () => {
-                const container = document.querySelector(".container");
-                container.style.cursor = 'pointer';
+            buttonCursor.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (event.target === buttonCursor) {
+                    const container = document.querySelector(".container");
+                    container.style.cursor = 'default';
+                    dialog.close();
+                    dialog.remove();
+                }
+
             })
         }
 
         const buttonBackground = document.querySelector('.background-btn');
         if (buttonBackground) {
-            buttonBackground.addEventListener('click', () => {
-                document.body.style.backgroundColor = 'white';
+            buttonBackground.addEventListener('click', (event) => {
+                event.preventDefault();
+                if (event.target === buttonBackground) {
+                    document.body.style.backgroundColor = 'white';
+                    dialog.close();
+                    dialog.remove();
+                }
             })
         }
 
-        if (document.querySelector('.ok')) {
-            const button = document.querySelector(".ok");
-            button.addEventListener("click", () => {
+        if (document.querySelector('form')) {
+            const form = document.querySelector("form");
+            form.addEventListener("submit", (event) => {
+                event.preventDefault();
                 if (document.querySelector('.input-shape').value) {
                     localStorage.setItem('inputShape', `${(document.querySelector('.input-shape').value).trim()}`);
                 }
@@ -102,7 +120,13 @@ export class SettingsModule extends Module {
                 if (document.querySelector('.input-dice').value) {
                     localStorage.setItem('inputDice', `${(document.querySelector('.input-dice').value).trim()}`);
                 }
+                dialog.close();
+                dialog.remove();
             })
         }
+        dialog.addEventListener('close', () => {
+            dialog.close();
+            dialog.remove();
+        })
     }
 }

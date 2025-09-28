@@ -7,10 +7,12 @@ import {SettingsModule} from "./modules/settings.module";
 import {DiceModule} from "./modules/dice.module";
 import {CursorModule} from "./modules/cursor.module";
 import {BackgroundModule} from "./modules/background.module";
+import {ClicksModule} from "./modules/clicks.module";
 
 const createContainer = () => {
   const container = document.createElement("div");
   container.textContent = "Зона контекстного меню";
+  container.style.userSelect = "none";
   container.classList.add("container");
   document.body.append(container);
 };
@@ -24,11 +26,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const dice = new DiceModule();
     const cursor = new CursorModule();
     const background = new BackgroundModule();
+    const clicks = new ClicksModule();
     menu.add(randomShape);
     menu.add(text);
     menu.add(dice);
     menu.add(cursor);
     menu.add(background);
+    menu.add(clicks);
     menu.add(settings);
 
   document.addEventListener("contextmenu", (event) => {
