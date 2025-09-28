@@ -6,6 +6,7 @@ import { AddTextModule } from "./modules/addText.module";
 import {SettingsModule} from "./modules/settings.module";
 import {DiceModule} from "./modules/dice.module";
 import {CursorModule} from "./modules/cursor.module";
+import {BackgroundModule} from "./modules/background.module";
 
 
 const createContainer = () => {
@@ -23,10 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const settings = new SettingsModule();
     const dice = new DiceModule();
     const cursor = new CursorModule();
+    const background = new BackgroundModule();
     menu.add(randomShape);
     menu.add(text);
     menu.add(dice);
     menu.add(cursor);
+    menu.add(background);
     menu.add(settings);
 
     document.addEventListener('contextmenu', (event) => {

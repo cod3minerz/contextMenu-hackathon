@@ -50,6 +50,11 @@ export class SettingsModule extends Module {
         buttonCursor.textContent = 'Вернуть стандартный курсор';
         form.append(buttonCursor);
 
+        const buttonBackground = document.createElement("button");
+        buttonBackground.className = "background-btn"
+        buttonBackground.textContent = 'Вернуть фон по умолчанию';
+        form.append(buttonBackground);
+
         const button = document.createElement("button");
         button.className = "ok"
         button.textContent = 'OK';
@@ -72,6 +77,13 @@ export class SettingsModule extends Module {
             buttonCursor.addEventListener('click', () => {
                 const container = document.querySelector(".container");
                 container.style.cursor = 'pointer';
+            })
+        }
+
+        const buttonBackground = document.querySelector('.background-btn');
+        if (buttonBackground) {
+            buttonBackground.addEventListener('click', () => {
+                document.body.style.backgroundColor = 'white';
             })
         }
 
