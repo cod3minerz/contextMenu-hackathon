@@ -23,37 +23,37 @@ export class DiceModule extends Module {
                 this.createOnePoint();
                 setTimeout(() => {
                     diceContainer.remove()
-                }, 5000);
+                }, Number(localStorage.getItem('inputDice'))*1000 || 5000);
                 break;
             case 2:
                 this.createTwoPoint();
                 setTimeout(() => {
                     diceContainer.remove()
-                }, 5000);
+                }, Number(localStorage.getItem('inputDice'))*1000 || 5000);
                 break;
             case 3:
                 this.createThreePoint();
                 setTimeout(() => {
                     diceContainer.remove()
-                }, 5000);
+                }, Number(localStorage.getItem('inputDice'))*1000 || 5000);
                 break;
             case 4:
                 this.createFourPoint();
                 setTimeout(() => {
                     diceContainer.remove()
-                }, 5000);
+                }, Number(localStorage.getItem('inputDice'))*1000 || 5000);
                 break;
             case 5:
                 this.createFivePoint();
                 setTimeout(() => {
                     diceContainer.remove()
-                }, 5000);
+                }, Number(localStorage.getItem('inputDice'))*1000 || 5000);
                 break;
             case 6:
                 this.createSixPoint();
                 setTimeout(() => {
                     diceContainer.remove()
-                }, 5000);
+                }, Number(localStorage.getItem('inputDice'))*1000 || 5000);
                 break;
         }
 

@@ -10,11 +10,11 @@ export class SettingsModule extends Module {
         const form = document.createElement("form");
         dialog.append(form);
         const header = document.createElement("h3");
-        header.textContent = 'Настройки (esc для выхода)'
+        header.textContent = 'Настройки'
         form.append(header);
 
         const labelShape = document.createElement("label");
-        labelShape.textContent = 'Длительность фигуры секунд';
+        labelShape.textContent = 'Длительность фигуры (сек)';
         const inputShape = document.createElement("input");
         inputShape.className = 'input-shape';
         inputShape.type = "number";
@@ -22,7 +22,7 @@ export class SettingsModule extends Module {
         form.append(labelShape);
 
         const labelText = document.createElement("label");
-        labelText.textContent = 'Длительность текста секунд';
+        labelText.textContent = 'Длительность текста (сек)';
         const inputText = document.createElement("input");
         inputText.className = 'input-text';
         inputText.type = "number";
@@ -36,6 +36,24 @@ export class SettingsModule extends Module {
         inputTextSize.type = "number";
         labelTextSize.append(inputTextSize);
         form.append(labelTextSize);
+
+        const labelDice = document.createElement("label");
+        labelDice.textContent = 'Длительность игральных костей (сек)';
+        const inputDice = document.createElement("input");
+        inputDice.className = 'input-dice';
+        inputDice.type = "number";
+        labelDice.append(inputDice);
+        form.append(labelDice);
+
+        const buttonCursor = document.createElement("button");
+        buttonCursor.className = "cursor"
+        buttonCursor.textContent = 'Вернуть стандартный курсор';
+        form.append(buttonCursor);
+
+        const buttonBackground = document.createElement("button");
+        buttonBackground.className = "background-btn"
+        buttonBackground.textContent = 'Вернуть фон по умолчанию';
+        form.append(buttonBackground);
 
         const button = document.createElement("button");
         button.className = "ok"
@@ -53,6 +71,22 @@ export class SettingsModule extends Module {
         })
         document.body.append(dialog);
         dialog.showModal();
+
+        const buttonCursor = document.querySelector(`.cursor`);
+        if (buttonCursor) {
+            buttonCursor.addEventListener('click', () => {
+                const container = document.querySelector(".container");
+                container.style.cursor = 'pointer';
+            })
+        }
+
+        const buttonBackground = document.querySelector('.background-btn');
+        if (buttonBackground) {
+            buttonBackground.addEventListener('click', () => {
+                document.body.style.backgroundColor = 'white';
+            })
+        }
+
         if (document.querySelector('.ok')) {
             const button = document.querySelector(".ok");
             button.addEventListener("click", () => {
@@ -64,6 +98,9 @@ export class SettingsModule extends Module {
                 }
                 if (document.querySelector('.input-size').value) {
                     localStorage.setItem('inputSize', `${(document.querySelector('.input-size').value).trim()}`);
+                }
+                if (document.querySelector('.input-dice').value) {
+                    localStorage.setItem('inputDice', `${(document.querySelector('.input-dice').value).trim()}`);
                 }
             })
         }

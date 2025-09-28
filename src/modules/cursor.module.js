@@ -7,7 +7,7 @@ export class CursorModule extends Module {
     }
 
     trigger() {
-        const cursorArray = ["help", "poiner", "progress", "wait", "cell",
+        const cursorArray = ["help", "pointer", "progress", "wait", "cell",
             "crosshair", "text", "vertical-text", "alias", "copy", "move",
             "no-drop", "grab", "grabbing"];
 
